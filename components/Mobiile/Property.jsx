@@ -1,6 +1,9 @@
-import { useState, useRef } from "react";
+"use client";
+
+import { useState } from "react";
 import { Heart, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function MobilePropertySection() {
   const [favorites, setFavorites] = useState(new Set());
@@ -8,11 +11,8 @@ export default function MobilePropertySection() {
   const toggleFavorite = (id) => {
     setFavorites((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
+      if (newSet.has(id)) newSet.delete(id);
+      else newSet.add(id);
       return newSet;
     });
   };
@@ -23,14 +23,14 @@ export default function MobilePropertySection() {
       type: "2 Bedroom Flat",
       location: "Ogba",
       price: "₦600,000",
-      image: "/api/placeholder/300/200",
+      image: "/rent1.png",
     },
     {
       id: 2,
       type: "3 Bedroom Flat",
       location: "Ikeja",
       price: "₦750,000",
-      image: "/api/placeholder/300/200",
+      image: "/rent2.jpg",
     },
   ];
 
@@ -40,14 +40,14 @@ export default function MobilePropertySection() {
       type: "4 Bedroom Duplex",
       location: "Omole Estate",
       price: "₦2,000,000",
-      image: "/api/placeholder/300/200",
+      image: "/fs1.png",
     },
     {
       id: 4,
       type: "5 Bedroom Duplex",
       location: "Lekki",
       price: "₦3,200,000",
-      image: "/api/placeholder/300/200",
+      image: "/rent2.jpg",
     },
   ];
 
@@ -57,14 +57,14 @@ export default function MobilePropertySection() {
       location: "Shimawa, Ikorodu",
       size: "500sqm",
       price: "₦450,000",
-      image: "/api/placeholder/300/200",
+      image: "/fsl1.png",
     },
     {
       id: 6,
       location: "The Premier",
       size: "300sqm",
       price: "₦3,500,000",
-      image: "/api/placeholder/300/200",
+      image: "/fsl2.jpg",
     },
   ];
 
@@ -74,13 +74,24 @@ export default function MobilePropertySection() {
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="relative">
-        <div className="w-full h-32 bg-gradient-to-r from-gray-200 to-gray-300 flex items-center justify-center">
-          <span className="text-gray-500 text-sm">Property Image</span>
-        </div>
+      <div className="relative w-full h-40">
+        {property.image ? (
+          <Image
+            src={property.image}
+            alt="Property"
+            fill
+            className="object-cover"
+            priority
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-r from-gray-200 to-gray-300 flex items-center justify-center">
+            <span className="text-gray-500 text-sm">No Image</span>
+          </div>
+        )}
+
         <button
           onClick={() => toggleFavorite(property.id)}
-          className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-md"
+          className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-md z-10"
         >
           <Heart
             className={`w-4 h-4 ${
@@ -93,12 +104,15 @@ export default function MobilePropertySection() {
       </div>
 
       <div className="p-3">
-        <div className="text-sm font-semibold text-gray-900 mb-1">
-          {isLand ? property.location : property.type}
+        <div className="flex justify-between mb-1">
+          <div className="text-sm font-semibold text-gray-900 ">
+            {isLand ? property.location : property.type}
+          </div>
+          <div className="text-xs text-gray-800 ">
+            {isLand ? property.size : property.location}
+          </div>
         </div>
-        <div className="text-xs text-gray-500 mb-2">
-          {isLand ? property.size : property.location}
-        </div>
+
         <div className="text-sm font-bold text-gray-900">{property.price}</div>
       </div>
     </motion.div>
@@ -124,19 +138,16 @@ export default function MobilePropertySection() {
 
   return (
     <div className="py-4 space-y-6 md:hidden">
-      {/* Apartment for rent */}
       <section>
         <SectionHeader title="Apartment for rent" linkText="See more" />
         <PropertyGrid data={apartmentData} />
       </section>
 
-      {/* Fastest selling properties */}
       <section>
         <SectionHeader title="Fastest selling properties" linkText="See more" />
         <PropertyGrid data={duplexData} />
       </section>
 
-      {/* Fastest selling lands */}
       <section>
         <SectionHeader title="Fastest selling lands" linkText="See more" />
         <PropertyGrid data={landData} isLand={true} />

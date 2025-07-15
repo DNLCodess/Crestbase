@@ -16,19 +16,11 @@ export default function MobileHeroCards() {
     },
     {
       id: 2,
-      title: "Prop Smart",
+      title: "Prop Safe",
       subtitle: "Save time with our AI-powered property recommendations",
       buttonText: "Try Now",
       gradient: "bg-[linear-gradient(135deg,#F1A5C2,#8B5F70)]",
       shadowStyle: "ring-2 ring-[#F1A5C2] shadow-inner shadow-[#F1A5C2]/30",
-    },
-    {
-      id: 3,
-      title: "Investment Guide",
-      subtitle: "Get expert insights on property investment opportunities",
-      buttonText: "Learn More",
-      gradient: "bg-gradient-to-br from-blue-500 to-blue-600",
-      shadowStyle: "ring-2 ring-blue-300 shadow-inner shadow-blue-300/30",
     },
   ];
 

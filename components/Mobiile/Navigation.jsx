@@ -13,9 +13,9 @@ export default function MobileBottomNavigation() {
       color: "text-blue-600",
     },
     {
-      id: "explore",
+      id: "leisure",
       icon: Building,
-      label: "Explore",
+      label: "Leisure",
       color: "text-gray-500",
     },
     {
@@ -26,9 +26,9 @@ export default function MobileBottomNavigation() {
       badge: true,
     },
     {
-      id: "messages",
+      id: "chat",
       icon: MessageCircle,
-      label: "Messages",
+      label: "Chat",
       color: "text-gray-500",
     },
     {
