@@ -70,7 +70,7 @@ export default function MobilePropertySection() {
 
   const PropertyCard = ({ property, isLand = false }) => (
     <motion.div
-      className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100"
+      className="bg-white rounded-2xl overflow-hidden "
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
     >
@@ -104,13 +104,20 @@ export default function MobilePropertySection() {
       </div>
 
       <div className="p-3">
-        <div className="flex justify-between mb-1">
-          <div className="text-sm font-semibold text-gray-900 ">
-            {isLand ? property.location : property.type}
-          </div>
-          <div className="text-xs text-gray-800 ">
-            {isLand ? property.size : property.location}
-          </div>
+        <div className="flex items-center justify-between text-sm text-gray-700 font-medium mb-1">
+          {!isLand ? (
+            <div className="flex items-center gap-1 truncate">
+              <span className="truncate">{property.type}</span>
+              <span className="text-gray-400">|</span>
+              <span className="truncate">{property.location}</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1 truncate">
+              <span className="truncate">{property.location}</span>
+              <span className="text-gray-400">|</span>
+              <span className="truncate">{property.size}</span>
+            </div>
+          )}
         </div>
 
         <div className="text-sm font-bold text-gray-900">{property.price}</div>
