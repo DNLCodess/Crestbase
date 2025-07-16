@@ -226,7 +226,7 @@ export default function PropertySlider() {
             {filteredProperties.map((prop) => (
               <div
                 key={prop.id}
-                className="w-64 sm:w-72 md:w-80 flex-shrink-0 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100"
+                className="w-64 sm:w-72 md:w-80 flex-shrink-0  rounded-2xl  "
               >
                 <div className="relative w-full h-40 rounded-t-2xl overflow-hidden">
                   <Image
@@ -245,10 +245,12 @@ export default function PropertySlider() {
                 </div>
 
                 <div className="p-3">
-                  <h3 className="text-base font-semibold text-gray-900 mb-1 line-clamp-1">
-                    {prop.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 mb-2">{prop.location}</p>
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <p className="text-sm text-gray-700 font-medium truncate">
+                      {prop.title} <span className="text-gray-400 mx-1">|</span>{" "}
+                      {prop.location}
+                    </p>
+                  </div>
                   <p className="text-lg font-bold text-gray-900">
                     {prop.price}
                   </p>

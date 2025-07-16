@@ -17,24 +17,27 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`hidden lg:flex flex-col h-full bg-white border-r border-gray-200 transition-all duration-300 ${
-        collapsed ? "w-20 px-3" : "w-64 px-6"
-      } py-14 flex-shrink-0`}
+      className={`hidden lg:flex flex-col h-screen bg-white border-r border-gray-200 transition-all duration-300 ease-in-out ${
+        collapsed ? "w-20" : "w-64"
+      }`}
     >
-      <div className="flex justify-end mb-6">
+      {/* Header with Collapse Control */}
+      <div className="flex items-center justify-between px-4 py-6">
+        {!collapsed && (
+          <h1 className="text-xl font-bold text-gray-800 tracking-tight">
+            Crestbase
+          </h1>
+        )}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="text-gray-500 hover:text-blue-600 transition"
+          className="text-gray-500 hover:text-blue-600 transition p-1 rounded-md"
         >
           {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
       </div>
 
-      {!collapsed && (
-        <h1 className="text-2xl font-bold text-gray-800 mb-10">Crestbase</h1>
-      )}
-
-      <nav className="flex flex-col gap-2 flex-1">
+      {/* Navigation */}
+      <nav className="flex flex-col gap-1 px-2 flex-1">
         <SidebarItem icon={Home} label="Home" active collapsed={collapsed} />
         <SidebarItem icon={BarChart} label="Leisure" collapsed={collapsed} />
         <SidebarItem icon={Heart} label="Saves" collapsed={collapsed} />
@@ -47,8 +50,8 @@ export default function Sidebar() {
         <SidebarItem icon={User} label="Account" avatar collapsed={collapsed} />
       </nav>
 
-      {/* Bottom: System Configuration */}
-      <div className="mt-auto pt-8 border-t border-gray-200">
+      {/* Bottom Config Section */}
+      <div className="mt-auto border-t border-gray-200 px-2 py-4">
         <SidebarItem
           icon={Settings}
           label="System Config"
@@ -62,7 +65,7 @@ export default function Sidebar() {
 function SidebarItem({ icon: Icon, label, active, badge, avatar, collapsed }) {
   return (
     <div
-      className={`relative flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all group ${
+      className={`relative flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all group ${
         active
           ? "bg-blue-100 text-blue-600 font-semibold"
           : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
@@ -75,10 +78,10 @@ function SidebarItem({ icon: Icon, label, active, badge, avatar, collapsed }) {
           className="w-8 h-8 rounded-full object-cover"
         />
       ) : (
-        <div className="relative w-5 h-5">
+        <div className="relative w-5 h-5 flex-shrink-0">
           <Icon className="w-5 h-5" />
           {badge && (
-            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-semibold w-5 h-5 flex items-center justify-center rounded-full">
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">
               {badge}
             </span>
           )}
