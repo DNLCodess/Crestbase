@@ -219,16 +219,16 @@ export default function PropertySlider() {
         {/* Scrollable cards container */}
         <div
           ref={scrollRef}
-          className="overflow-x-auto scrollbar-hide px-4 scroll-smooth"
+          className="overflow-x-auto scrollbar-hide  scroll-smooth"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           <div className="flex gap-4 md:gap-6 pb-4">
             {filteredProperties.map((prop) => (
               <div
                 key={prop.id}
-                className="w-64 sm:w-72 md:w-80 flex-shrink-0  rounded-2xl  "
+                className="w-64 sm:w-72 md:w-80 flex-shrink-0   "
               >
-                <div className="relative w-full h-40 rounded-t-2xl overflow-hidden">
+                <div className="relative w-full h-44 rounded-3xl overflow-hidden">
                   <Image
                     src={prop.image}
                     alt={prop.title}
@@ -244,7 +244,7 @@ export default function PropertySlider() {
                   </button>
                 </div>
 
-                <div className="p-3">
+                <div className="py-3">
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <p className="text-sm text-gray-700 font-medium truncate">
                       {prop.title} <span className="text-gray-400 mx-1">|</span>{" "}

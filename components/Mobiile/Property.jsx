@@ -80,7 +80,7 @@ export default function MobilePropertySection() {
             src={property.image}
             alt="Property"
             fill
-            className="object-cover"
+            className="object-cover rounded-3xl"
             priority
           />
         ) : (
@@ -103,7 +103,7 @@ export default function MobilePropertySection() {
         </button>
       </div>
 
-      <div className="p-3">
+      <div className="py-3">
         <div className="flex items-center justify-between text-sm text-gray-700 font-medium mb-1">
           {!isLand ? (
             <div className="flex items-center gap-1 truncate">
@@ -144,7 +144,7 @@ export default function MobilePropertySection() {
   );
 
   return (
-    <div className="py-4 space-y-6 md:hidden">
+    <div className="space-y-6 md:hidden">
       <section>
         <SectionHeader title="Apartment for rent" linkText="See more" />
         <PropertyGrid data={apartmentData} />
