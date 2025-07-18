@@ -18,7 +18,7 @@ export default function Home() {
       </main>
 
       {/* Mobile Layout */}
-      <main className="bg-white min-h-screen px-6 md:hidden">
+      <main className="bg-white min-h-screen px-6 w-full md:hidden">
         <MobileHeader />
         <MobileHeroCards />
         <MobileCategoryTabs />

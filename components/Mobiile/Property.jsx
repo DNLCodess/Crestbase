@@ -69,7 +69,7 @@ export default function MobilePropertySection() {
 
   const PropertyCard = ({ property, isLand = false }) => (
     <motion.div
-      className=" py-2 overflow-hidden snap-start shrink-0 w-[50vw] max-w-xs mr-4 last:mr-0"
+      className=" py-2 overflow-hidden snap-start shrink-0 w-[50vw] max-w-full mr-4 last:mr-0"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
     >
@@ -146,7 +146,7 @@ export default function MobilePropertySection() {
   );
 
   return (
-    <div className="space-y-8 md:hidden overflow-hidden w-xs max-w-3xl">
+    <div className="space-y-8 md:hidden overflow-hidden w-sm">
       <section>
         <SectionHeader title="Apartment for rent" linkText="See more" />
         <HorizontalScrollSection data={apartmentData} />
