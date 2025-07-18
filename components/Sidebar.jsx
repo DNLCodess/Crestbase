@@ -10,6 +10,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
+
+import { LuMessageCircleMore } from "react-icons/lu";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -17,7 +19,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`hidden lg:flex flex-col h-screen bg-white border-r border-gray-200 transition-all duration-300 ease-in-out ${
+      className={`hidden lg:flex flex-col h-screen bg-[#ECECEC] border-r-2  border-gray-200 transition-all duration-300 ease-in-out ${
         collapsed ? "w-20" : "w-64"
       }`}
     >
@@ -42,7 +44,7 @@ export default function Sidebar() {
         <SidebarItem icon={BarChart} label="Leisure" collapsed={collapsed} />
         <SidebarItem icon={Heart} label="Saves" collapsed={collapsed} />
         <SidebarItem
-          icon={MessageCircle}
+          icon={LuMessageCircleMore}
           label="Chats"
           badge="10"
           collapsed={collapsed}
@@ -67,7 +69,7 @@ function SidebarItem({ icon: Icon, label, active, badge, avatar, collapsed }) {
     <div
       className={`relative flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all group ${
         active
-          ? "bg-blue-100 text-blue-600 font-semibold"
+          ? "bg-[#3D79EF] text-white font-semibold"
           : "text-gray-700 hover:bg-gray-100 hover:text-blue-600"
       }`}
     >

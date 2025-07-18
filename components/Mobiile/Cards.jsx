@@ -9,10 +9,9 @@ export default function MobileHeroCards() {
       id: 1,
       title: "Real Estate Goal",
       subtitle:
-        "Let's set your goal and find all recommended properties that aligns with it",
+        "Tell us your goal and our AI recommend properties that align with it",
       buttonText: "Explore",
       gradient: "bg-[linear-gradient(135deg,#3D79EF,#35A162)]",
-      shadowStyle: "ring-2 ring-[#F1A5C2] shadow-inner shadow-[#F1A5C2]/30",
     },
     {
       id: 2,
@@ -20,7 +19,6 @@ export default function MobileHeroCards() {
       subtitle: "Save time with our AI-powered property recommendations",
       buttonText: "Try Now",
       gradient: "bg-[linear-gradient(135deg,#F1A5C2,#8B5F70)]",
-      shadowStyle: "ring-2 ring-[#F1A5C2] shadow-inner shadow-[#F1A5C2]/30",
     },
   ];
 
@@ -51,16 +49,20 @@ export default function MobileHeroCards() {
         {cards.map((card) => (
           <div
             key={card.id}
-            className={`min-w-full ${card.gradient} text-white rounded-2xl p-6 snap-start relative overflow-hidden transition-all duration-300 ${card.shadowStyle}`}
+            className={`min-w-full ${card.gradient} text-white rounded-2xl p-6 max-h-40 snap-start relative overflow-hidden transition-all duration-300`}
           >
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold mb-2">{card.title}</h3>
-              <p className="text-sm opacity-90 mb-6 leading-relaxed">
-                {card.subtitle}
-              </p>
-              <button className="bg-white bg-opacity-20 hover:bg-opacity-30 text-black px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
-                {card.buttonText}
-              </button>
+            <div className="relative z-10 flex flex-col h-full justify-between">
+              <div>
+                <h3 className="text-xl mb-2 font-semibold">{card.title}</h3>
+                <p className="text-sm opacity-100  leading-relaxed">
+                  {card.subtitle}
+                </p>
+              </div>
+              <div className="flex justify-end">
+                <button className="bg-white bg-opacity-30 backdrop-blur-md text-indigo-500 font-semibold px-4 py-2 rounded-2xl text-base transition-all duration-200 hover:bg-opacity-40 shadow-[4px_4px_0px_rgba(101,67,33,0.8)]">
+                  {card.buttonText}
+                </button>
+              </div>
             </div>
           </div>
         ))}

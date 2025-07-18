@@ -12,3 +12,6 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+@theme {
+  --color-soft-pink: "rgba(241, 165, 194, 0.16)";
+}

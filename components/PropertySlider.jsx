@@ -157,7 +157,7 @@ export default function PropertySlider() {
         {canScrollTabsLeft && (
           <button
             onClick={() => scrollTabs("left")}
-            className="absolute z-20 left-0 top-1/2 -translate-y-1/2 bg-white border border-gray-200 rounded-full p-1.5 shadow-lg hover:bg-gray-50 transition-colors duration-200"
+            className="absolute z-20 left-0 top-1/2 -translate-y-1/2 bg-white border border-gray-200 rounded-full py-1.5 shadow-lg hover:bg-gray-50 transition-colors duration-200"
           >
             <ChevronLeft className="w-4 h-4 text-gray-600" />
           </button>
@@ -174,7 +174,7 @@ export default function PropertySlider() {
         {/* Tabs container */}
         <div
           ref={tabScrollRef}
-          className="flex gap-6 overflow-x-auto scrollbar-hide px-4 py-3 text-sm font-medium text-gray-500 scroll-smooth"
+          className="flex gap-6 overflow-x-auto scrollbar-hide py-3 text-sm font-medium text-gray-500 scroll-smooth"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {categories.map((cat) => (
@@ -233,6 +233,7 @@ export default function PropertySlider() {
                     src={prop.image}
                     alt={prop.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                     priority
                   />

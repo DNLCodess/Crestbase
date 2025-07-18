@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, ChevronRight } from "lucide-react";
+import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -11,8 +11,7 @@ export default function MobilePropertySection() {
   const toggleFavorite = (id) => {
     setFavorites((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(id)) newSet.delete(id);
-      else newSet.add(id);
+      newSet.has(id) ? newSet.delete(id) : newSet.add(id);
       return newSet;
     });
   };
@@ -70,16 +69,17 @@ export default function MobilePropertySection() {
 
   const PropertyCard = ({ property, isLand = false }) => (
     <motion.div
-      className="bg-white rounded-2xl overflow-hidden "
+      className=" py-2 overflow-hidden snap-start shrink-0 w-[80vw] max-w-xs mr-4 last:mr-0"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="relative w-full h-40">
+      <div className="relative w-full h-44 py-2">
         {property.image ? (
           <Image
             src={property.image}
             alt="Property"
             fill
+            sizes="(max-width: 768px) 100vw"
             className="object-cover rounded-3xl"
             priority
           />
@@ -91,19 +91,19 @@ export default function MobilePropertySection() {
 
         <button
           onClick={() => toggleFavorite(property.id)}
-          className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-md z-10"
+          className="absolute top-2 right-2 p-1.5 bg-transparent rounded-full shadow-md z-10"
         >
           <Heart
             className={`w-4 h-4 ${
               favorites.has(property.id)
                 ? "fill-red-500 text-red-500"
-                : "text-gray-400"
+                : "text-white"
             }`}
           />
         </button>
       </div>
 
-      <div className="py-3">
+      <div className="py-3 px-3">
         <div className="flex items-center justify-between text-sm text-gray-700 font-medium mb-1">
           {!isLand ? (
             <div className="flex items-center gap-1 truncate">
@@ -126,38 +126,39 @@ export default function MobilePropertySection() {
   );
 
   const SectionHeader = ({ title, linkText }) => (
-    <div className="flex items-center justify-between mb-3">
+    <div className="flex items-center justify-between mb-3 ">
       <h2 className="text-base font-semibold text-gray-900">{title}</h2>
-      <button className="flex items-center gap-1 text-sm text-pink-500 font-medium">
+      <button className="text-sm bg-pink-200 text-pink-600 px-3 py-1 rounded-lg">
         {linkText}
-        <ChevronRight className="w-4 h-4" />
       </button>
     </div>
   );
 
-  const PropertyGrid = ({ data, isLand = false }) => (
-    <div className="grid grid-cols-2 gap-3">
-      {data.map((property) => (
-        <PropertyCard key={property.id} property={property} isLand={isLand} />
-      ))}
+  const HorizontalScrollSection = ({ data, isLand = false }) => (
+    <div className="overflow-x-auto snap-x snap-mandatory  pb-1 scrollbar-hide">
+      <div className="flex">
+        {data.map((property) => (
+          <PropertyCard key={property.id} property={property} isLand={isLand} />
+        ))}
+      </div>
     </div>
   );
 
   return (
-    <div className="space-y-6 md:hidden">
+    <div className="space-y-8 md:hidden overflow-hidden w-xs max-w-3xl">
       <section>
         <SectionHeader title="Apartment for rent" linkText="See more" />
-        <PropertyGrid data={apartmentData} />
+        <HorizontalScrollSection data={apartmentData} />
       </section>
 
       <section>
         <SectionHeader title="Fastest selling properties" linkText="See more" />
-        <PropertyGrid data={duplexData} />
+        <HorizontalScrollSection data={duplexData} />
       </section>
 
       <section>
         <SectionHeader title="Fastest selling lands" linkText="See more" />
-        <PropertyGrid data={landData} isLand={true} />
+        <HorizontalScrollSection data={landData} isLand={true} />
       </section>
     </div>
   );

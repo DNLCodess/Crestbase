@@ -1,3 +1,5 @@
+"use client";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function MobileCategoryTabs() {
@@ -7,42 +9,56 @@ export default function MobileCategoryTabs() {
     {
       id: "rent",
       label: "Rent Apartment",
-      icon: "🏠",
-      color: "bg-blue-100 text-blue-700",
+      iconSrc: "/icons/house1.png",
+      color: "bg-[#FCEDF3]",
+      ringColor: "ring-pink-500",
     },
     {
       id: "sale",
       label: "Properties for Sale",
-      icon: "🏢",
-      color: "bg-green-100 text-green-700",
+      iconSrc: "/icons/house2.png",
+      color: "bg-[#ECF2FE]",
+      ringColor: "ring-green-500",
     },
     {
       id: "lands",
       label: "Lands for Sale",
-      icon: "🌍",
-      color: "bg-orange-100 text-orange-700",
+      iconSrc: "/icons/land.png",
+      color: "bg-[#EBF6F0]",
+      ringColor: "ring-orange-300",
     },
   ];
 
   return (
     <div className="py-4 md:hidden">
       <div className="grid grid-cols-3 gap-3">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`p-4 rounded-2xl text-center transition-colors duration-200 relative ${
-              activeTab === tab.id
-                ? `${tab.color} ring-2 ring-offset-2 ring-${
-                    tab.color.split(" ")[1].split("-")[0]
-                  }-300`
-                : "bg-gray-50 text-gray-600 hover:bg-gray-100"
-            }`}
-          >
-            <div className="text-2xl mb-2">{tab.icon}</div>
-            <div className="text-xs font-medium leading-tight">{tab.label}</div>
-          </button>
-        ))}
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`p-4 rounded-2xl text-center transition duration-200 relative flex flex-col items-center ${
+                isActive
+                  ? `${tab.color} ${tab.ringColor} ring-2 ring-offset-2`
+                  : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              <div className="w-10 h-10 relative mb-2">
+                <Image
+                  src={tab.iconSrc}
+                  alt={tab.label}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw"
+                />
+              </div>
+              <div className="text-sm font-medium leading-tight">
+                {tab.label}
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

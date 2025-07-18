@@ -24,7 +24,7 @@ export default function PromoCards() {
   ];
 
   return (
-    <section className="w-full max-w-6xl mx-auto mt-6 px-4">
+    <section className="w-full max-w-6xl mx-auto mt-6">
       <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
         <ArrowLeft className="w-4 h-4 text-gray-600 cursor-pointer hover:text-black transition-colors" />
         Marketplace

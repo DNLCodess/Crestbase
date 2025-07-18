@@ -1,6 +1,13 @@
 "use client";
 import { useState } from "react";
-import { ChevronDown, Bell, Headphones, MapPin, User } from "lucide-react";
+import {
+  ChevronDown,
+  Bell,
+  Headphones,
+  MapPin,
+  User,
+  SearchIcon,
+} from "lucide-react";
 
 export default function Header() {
   const tabs = [
@@ -12,13 +19,13 @@ export default function Header() {
   const [active, setActive] = useState("rent");
 
   return (
-    <header className="w-full bg-white shadow-sm px-4 md:px-6 py-4 hidden md:block">
+    <header className="w-full bg-white shadow-sm px-4 md:px-6 py-6 hidden md:block">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between h-12">
+        <div className="flex items-center  justify-between h-12">
           {/* Left: Tabs + Filters */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center  gap-8">
             {/* Tabs */}
-            <div className="flex items-center gap-8">
+            <div className="flex items-center  gap-8">
               {tabs.map((tab) => (
                 <button
                   key={tab.key}
@@ -28,7 +35,7 @@ export default function Header() {
                   <img
                     src={tab.icon}
                     alt={tab.label}
-                    className="w-6 h-6 object-contain mb-1"
+                    className="w-12 h-12 object-contain mb-1"
                   />
                   <span
                     className={`text-sm transition-colors whitespace-nowrap ${
@@ -40,39 +47,36 @@ export default function Header() {
                     {tab.label}
                   </span>
                   {active === tab.key && (
-                    <div className="h-0.5 w-full bg-[#2D2E46] rounded-full mt-1" />
+                    <div className="h-1 w-full my-1 bg-[#2D2E46] rounded-full " />
                   )}
                 </button>
               ))}
             </div>
 
             {/* Filters */}
-            <div className="flex items-center gap-5 bg-gray-100 px-4 py-2 rounded-full shadow-sm border border-gray-200">
+            <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200">
               <Dropdown label="Property type" />
+              <Separator />
               <Dropdown label="Minimum price" />
+              <Separator />
               <Dropdown label="Maximum price" />
+              <Separator />
               <div className="flex items-center text-sm text-gray-600 cursor-pointer hover:text-gray-800 transition-colors">
                 <MapPin className="w-4 h-4 mr-1 text-green-600" />
                 Location
               </div>
-              <button className="p-2 rounded-full bg-[#3A6FF8] hover:bg-blue-700 text-white transition-colors">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 101 8a7.5 7.5 0 0015 0z" />
-                </svg>
-              </button>
+              <div className="flex-grow"></div>
+
+              <div className="h-10 w-10 rounded-full bg-[#3A6FF8] hover:bg-blue-700 text-white flex items-center justify-center transition-colors">
+                <SearchIcon size={20} />
+              </div>
             </div>
           </div>
 
           {/* Right: Profile & Icons */}
-          <div className="flex items-center gap-4 flex-shrink-0">
+          <div className="flex items-center gap-4 flex-shrink-0 px-1">
             <IconButton icon={<Headphones className="w-5 h-5" />} />
-            <div className="relative">
+            <div className="relative bg-gray-200 rounded-full">
               <IconButton icon={<Bell className="w-5 h-5" />} />
               <span className="absolute -top-1 -right-1 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
             </div>
@@ -107,4 +111,8 @@ function IconButton({ icon }) {
       {icon}
     </button>
   );
+}
+
+function Separator() {
+  return <span className="mx-2 text-gray-300">|</span>;
 }
